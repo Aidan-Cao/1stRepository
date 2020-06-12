@@ -1,0 +1,25 @@
+import csv
+import math
+import matplotlib.pyplot as plt
+filenamex = "/Users/janec/Downloads/dataX.csv"
+filenamey = "/Users/janec/Downloads/dataY.csv"
+def FileReader(inputfile):
+    summ = 0
+    arr = []
+    with open (inputfile) as filehandle:
+        for line in csv.reader(filehandle):
+            if line:
+                if ("sin" not in line[0]):
+                    summ = summ + abs (float(line[0]))
+                    arr.append (float(line[0]))
+    return (summ,arr)
+
+xarr = FileReader(filenamex)[1]
+yarr = FileReader (filenamey)[1]
+summy = FileReader (filenamey)[0]
+dx = xarr[1] - xarr[0]
+area = dx*summy
+print ("Area is: ", area)
+
+plt.plot(xarr,yarr)
+plt.show()
